@@ -21,7 +21,7 @@ format_source_redcap_data_dictionary <-
 
                 #Adding IDENTITY_ID primary key
                 DATA_02 <- DATA_01 %>%
-                        somersaulteR::add_primary_key("IDENTITY_ID", starting_number = "100000", prefix = "BC")
+                        somersaulteR::add_primary_key("IDENTITY_ID", starting_number = identity_id_starting_digit, prefix = identity_id_prefix)
 
                 #Saving a version of the processed data dictionary
                 DATA_03_A <- DATA_02
