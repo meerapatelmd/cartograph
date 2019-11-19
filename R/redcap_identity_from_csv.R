@@ -31,7 +31,8 @@ redcap_identity_from_csv <-
                 if (!is.null(redcap_forms_to_exclude)) {
                         IDENTITY_01 <-
                                 IDENTITY_00 %>%
-                                dplyr::filter_at(vars(FORM_NAME), any_vars(!(. %in% redcap_forms_to_exclude)))
+                                somersaulteR::filter_out_vector(filter_col = FORM_NAME,
+                                                                exclusion_vector = redcap_forms_to_exclude)
                 } else {
                         IDENTITY_01 <-
                                 IDENTITY_00
@@ -65,7 +66,7 @@ redcap_identity_from_csv <-
 
 
                 IDENTITY_05 <-
-                        reshape2::melt(IDENTITY_04, id.vars = "IDENTITY_ID", variable.name = "KEY_FIELD", value.name = "KEY_CONCEPT_NAME") %>%
+                        reshape2::melt(IDENTITY_04, measure.vars = c("VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL"), variable.name = "KEY_FIELD", value.name = "KEY_CONCEPT_NAME") %>%
                         dplyr::mutate_all(as.character) %>%
                         dplyr::mutate(KEY_FIELD = str_replace_all(KEY_FIELD, "^PERMISSIBLE_VALUE_LABEL$", "KMI_PERMISSIBLE_VALUE_LABEL"))
 
