@@ -8,6 +8,7 @@ path_to_identity <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/KEY
 path_to_key <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/KEY/REDCap/KEY_TO_UMLS.csv"
 path_to_relationship <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/KEY/REDCap/RELATIONSHIP.csv"
 path_to_umls_lookup <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/UMLS/LOOKUP.csv"
+path_to_local_dictionary <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech//CATALOGUE/MSK/LOCAL_DICTIONARY.csv"
 
 ##Path to source data in msk-extract-quarry
 path_to_input_01 <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/msk-extract-quarry/Misc_20190819_to_20191023/BreastDMT_DataDictionary_2018-07-27.csv"
