@@ -7,6 +7,7 @@
 #' @import somersaulteR
 #' @import dplyr
 #' @import stringr
+#' @export
 
 format_source_redcap_data_dictionary <-
         function(path_to_redcap_data_dictionary_csv,

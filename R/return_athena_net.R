@@ -10,9 +10,9 @@
 #' @importFrom typewriteR tell_me
 #' @importFrom crayon cyan
 #' @importFrom mySeagull connect_to_local_postgres
-#' @importFrom DBI dbGetQuery, dbDisconnect
+#' @import DBI
 #' @importFrom mirroR create_path_to_file
-#' @importFrom projektor append_csv
+#' @importFrom projektoR append_csv
 #' @export
 
 
