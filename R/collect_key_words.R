@@ -51,7 +51,7 @@ collect_key_words <-
                                 cat("\n")
 
                                 ##Returning output
-                                return(output_data)
+                                #return(output_data)
 
                         } else {
                                 output_data <-
@@ -69,7 +69,7 @@ collect_key_words <-
                                 cat("\n")
 
                                 ##Returning output
-                                return(output_data)
+                                #return(output_data)
                         }
                 }
         }
