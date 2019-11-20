@@ -17,7 +17,7 @@ collect_key_words <-
 
                 if (file.exists(rds_fn)) {
                         output_data <- readr::read_rds(rds_fn) %>%
-                                                dplyr::mutate_all(na_if, "") #Important so this will not throw off queries for KEY_WORD == ""
+                                                dplyr::mutate_all(stringr::str_replace_na, "") #Important so this will not throw off queries for KEY_WORD == ""
                         start_index <- nrow(output_data)
 
                 } else {
@@ -59,7 +59,7 @@ collect_key_words <-
                                         dplyr::bind_rows(output_data,
                                                          dataframe %>%
                                                                  dplyr::filter(row_number() == i) %>%
-                                                                 dplyr::mutate(KEY_WORD = NA) %>%
+                                                                 dplyr::mutate(KEY_WORD = "") %>%
                                                                  somersaulteR::add_timestamp_column(new_col_name = "KEY_TIMESTAMP")
                                                         )
 
