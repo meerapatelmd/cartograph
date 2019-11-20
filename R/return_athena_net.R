@@ -70,7 +70,7 @@ return_athena_net <-
 
                                 conn_to_athena <- mySeagull::connect_to_local_postgres(dbname = "athena")
                                 sql_statement <- paste0("SELECT * FROM public.concept WHERE concept_name LIKE '%", phrase_01, "%';")
-                                output <- DBI::dbGetQuery(conn_to_athena, sql_statement)
+                                x <- DBI::dbGetQuery(conn_to_athena, sql_statement)
 
 
                                 output_fn <-
@@ -79,14 +79,14 @@ return_athena_net <-
                                                                     file_extension = "csv")
 
 
-                                readr::write_csv(output, path = output_fn)
+                                readr::write_csv(x, path = output_fn)
 
                                 projektoR::append_csv(csv_fn = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/LOOKUP.csv",
                                                       dataframe = dplyr::tibble(ATHENA_SQL_KEYWORD_TIMESTAMP = mirroR::get_timestamp(),
                                                                          ATHENA_SQL_KEYWORD_ID = athena_sql_keyword_id,
                                                                          ATHENA_SQL_KEYWORD = phrase_01,
-                                                                         NET_CUI_COUNT = length(unique(output$concept_code)),
-                                                                         NET_ROW_COUNT = nrow(output)) %>%
+                                                                         NET_CUI_COUNT = length(unique(x$concept_code)),
+                                                                         NET_ROW_COUNT = nrow(x)) %>%
                                                                                 somersaulteR::call_mr_clean()
                                                         )
 

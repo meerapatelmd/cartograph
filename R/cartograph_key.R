@@ -1,11 +1,7 @@
-#' Takes a key or dataframe joined with a key and divides it based on status mapped out in a cartograph
-#' @param dataframe dataframe with the necessary columns mapped out in the function
-#' @import dplyr
-#' @importFrom rlang parse_expr
-#' @export
+
 
 cartograph_key <-
-        function(dataframe) {
+        function(parent_dataframe) {
                 cartograph <-
                         dplyr::bind_rows(
                                 data.frame(bifurcation = "1",
@@ -82,69 +78,5 @@ cartograph_key <-
                         dplyr::mutate_at(vars(bifurcation, sequence), as.integer) %>%
                         dplyr::arrange(bifurcation, parent, sequence)
                 
-                PARENT <- dataframe
                 
-                bifurcation_01 <-
-                        cartograph %>%
-                        dplyr::filter(bifurcation == 1)
-                
-                output_01 <- list()
-                for (i in 1:nrow(bifurcation_01)) {
-                        x <- 
-                                eval(
-                                        rlang::parse_expr(
-                                                paste0(bifurcation_01$parent[i], " %>% ",
-                                                       paste0("dplyr::", bifurcation_01$dplyr_function[i], "(", bifurcation_01$dplyr_function_arg[i], ")")))
-                                )
-                        
-                        assign(bifurcation_01$status[i], x)
-                        output_01[[i]] <- x
-                        names(output_01)[i] <- bifurcation_01$status[i]
-                }
-                
-                
-                bifurcation_02 <-
-                        cartograph %>%
-                        dplyr::filter(bifurcation == 2)
-                
-                bifurcation_02 <-
-                        split(bifurcation_02, bifurcation_02$parent)
-                
-                output_02 <- list()
-                for (i in 1:length(bifurcation_02)) {
-                        if (i == 1) {
-                                output_02 <- list()
-                                output_02[[1]] <- list()
-                                names(output_02)[1] <- names(bifurcation_02)[1]
-                        } else {
-                                output_02[[i]] <- list()
-                                names(output_02)[i] <- names(bifurcation_02)[i]
-                        }
-                }
-                
-                for (i in 1:length(bifurcation_02)) {
-                        for (j in 1:nrow(bifurcation_02[[i]])) {
-                                x <- 
-                                        eval(
-                                                rlang::parse_expr(
-                                                        paste0(
-                                                                names(bifurcation_02)[i], " %>% ",
-                                                                paste0("dplyr::", bifurcation_02[[i]]$dplyr_function[j], "(", bifurcation_02[[i]]$dplyr_function_arg[j], ")"))
-                                                )
-                                        )
-                                
-                                output_02[[names(bifurcation_02)[i]]][[1+length(output_02[[names(bifurcation_02)[i]]])]] <- x
-                                names(output_02[[names(bifurcation_02)[i]]])[length(output_02[[names(bifurcation_02)[i]]])] <- bifurcation_02[[i]]$status[j]
-                        }
-                }
-                
-                single_bifurcations <- bifurcation_01$status[!(bifurcation_01$status %in% names(output_02))]
-                
-                final_output <- list()
-                for (i in 1:length(single_bifurcations)) {
-                        final_output[[i]] <- output_01[[single_bifurcations[i]]]
-                        names(final_output)[i] <- single_bifurcations[i]
-                }
-                final_output <- c(final_output, output_02)
-                return(final_output)
         }
