@@ -59,7 +59,10 @@ return_athena_net <-
                         typewriteR::tell_me("Native Phrase:", crayon::cyan(phrase_00))
                         typewriteR::tell_me("Processed Phrase:", crayon::cyan(phrase_01))
 
-                        if (!(phrase_01 %in% athena_lookup$ATHENA_SQL_KEYWORD)) {
+
+                        if (phrase_01 == "") {
+                                typewriteR::tell_me("Phrase is blank. Skipping. ")
+                        } else if (!(phrase_01 %in% athena_lookup$ATHENA_SQL_KEYWORD)) {
                                 if (nrow(athena_lookup) == 0) {
                                         athena_sql_keyword_id <- id_start_index
                                 } else {

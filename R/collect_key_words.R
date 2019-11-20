@@ -16,7 +16,8 @@ collect_key_words <-
                 rds_fn <- paste0(script_step_number, "_", output_dataframe_name, ".RData")
 
                 if (file.exists(rds_fn)) {
-                        output_data <- readr::read_rds(rds_fn)
+                        output_data <- readr::read_rds(rds_fn) %>%
+                                                dplyr::mutate_all(na_if, "") #Important so this will not throw off queries for KEY_WORD == ""
                         start_index <- nrow(output_data)
 
                 } else {
