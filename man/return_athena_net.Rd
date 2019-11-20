@@ -4,7 +4,7 @@
 \alias{return_athena_net}
 \title{Writes Athena CONCEPT table NET}
 \usage{
-return_athena_net(phrases,
+return_athena_net(phrases, rm_blank_phrases = TRUE,
   path_to_athena_lookup = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/LOOKUP.csv",
   path_to_net_dir = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/NETS",
   sub_forward_slash = TRUE, trim_inner_space = TRUE,
