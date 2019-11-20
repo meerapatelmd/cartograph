@@ -18,6 +18,7 @@ collect_key_words <-
                 if (file.exists(rds_fn)) {
                         output_data <- readr::read_rds(rds_fn)
                         start_index <- nrow(output_data)
+
                 } else {
                         output_data <- dataframe %>%
                                 dplyr::mutate(KEY_WORD = "")
@@ -49,6 +50,9 @@ collect_key_words <-
                                 typewriteR::tell_me(Sys.time(), rds_fn, "saved...")
                                 cat("\n")
 
+                                ##Returning output
+                                return(output_data)
+
                         } else {
                                 output_data <-
                                         dplyr::bind_rows(output_data,
@@ -63,14 +67,9 @@ collect_key_words <-
                                 saveRDS(output_data, file = rds_fn)
                                 typewriteR::tell_me(Sys.time(), rds_fn, "saved...")
                                 cat("\n")
-                        }
-                }
 
-                if (!exists(output_dataframe_name, envir = globalenv())) {
-                        assign(output_dataframe_name, output_data, envir = globalenv())
-                } else {
-                        typewriteR::tell_me("Object", output_dataframe_name, "already exists in the global environment and it will be overwritten.")
-                        typewriteR::stop_and_enter()
-                        assign(output_dataframe_name, output_data, envir = globalenv())
+                                ##Returning output
+                                return(output_data)
+                        }
                 }
         }
