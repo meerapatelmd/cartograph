@@ -18,6 +18,7 @@
 
 return_athena_net <-
         function(phrases,
+                 rm_blank_phrases = TRUE,
                  path_to_athena_lookup = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/LOOKUP.csv",
                  path_to_net_dir = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/NETS",
                  sub_forward_slash = TRUE,
@@ -28,6 +29,12 @@ return_athena_net <-
                  return_lookup = FALSE) {
 
                 output <- list()
+
+                if (rm_blank_phrases == TRUE) {
+                        phrases <- phrases[phrases != ""]
+                } else {
+                        phrases <- phrases
+                }
                 for (i in 1:length(phrases)) {
                         athena_lookup <- readr::read_csv(path_to_athena_lookup,
                                                          col_types = cols(.default = "c"))
