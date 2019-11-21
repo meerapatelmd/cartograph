@@ -14,34 +14,69 @@
 
 
 amend_key_words <-
-        function(concept_col, concept_to_amend, key_words_to_add, script_step_number, output_dataframe_name) {
+        function(path_to_key, identity_id, key_field, key_concept_name, ..., path_to_local_repo = NULL) {
 
-                #Prepping columns
-                concept_col <- enquo(concept_col)
+                ###Arguments turn into a string of keywords
+                Args <- list(...)
+                new_key_words <- paste(unlist(Args), collapse = ", ")
 
-                #Getting rds_fn
-                rds_fn <- paste0(script_step_number, "_", output_dataframe_name, ".RData")
-                output_data <- readr::read_rds(rds_fn) %>%
-                                        somersaulteR::call_mr_clean()
+
+                #Getting key
+                key <- load_and_filter_key_for_current_version(path_to_key = path_to_key)
+
 
                 #Filtering for the concept and amended the KEY_WORD and binding it to all other records
-                new_output_data <-
-                        dplyr::bind_rows(output_data %>%
-                                                 dplyr::filter_at(vars(!!concept_col), dplyr::all_vars(. != concept_to_amend)),
-                                        output_data %>%
-                                                dplyr::filter_at(vars(!!concept_col), dplyr::all_vars(. == concept_to_amend)) %>%
-                                                dplyr::mutate(KEY_WORD = paste0(KEY_WORD, ",", key_words_to_add)) %>%
-                                                dplyr::mutate(KEY_TIMESTAMP = mirroR::get_timestamp())
-                                        )
+                add_to_key <-
+                        key %>%
+                        dplyr::filter_at(vars(IDENTITY_ID), dplyr::all_vars(. == identity_id)) %>%
+                        dplyr::filter_at(vars(KEY_FIELD), dplyr::all_vars(. == key_field)) %>%
+                        dplyr::filter_at(vars(KEY_CONCEPT_NAME), dplyr::all_vars(. == key_concept_name))
 
-                brake_if_nrows_dont_match(output_data, new_output_data)
+                if (nrow(add_to_key) > 0) {
+                        add_to_key <-
+                                add_to_key %>%
+                                dplyr::filter(row_number() == 1) %>%
+                                dplyr::mutate(KEY_WORD = paste0(KEY_WORD, ", ", new_key_words)) %>%
+                                dplyr::mutate(KEY_TIMESTAMP = mirroR::get_timestamp())
+                } else {
+                        key_var <- enquo(key_field)
+                        identity <- readr::read_csv("/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/KEY/REDCap/IDENTITY.csv", col_types = cols(.default = "c")) %>%
+                                                dplyr::filter(IDENTITY_ID == identity_id) %>%
+                                                dplyr::filter_at(vars(!!key_var), all_vars(. == key_concept_name)) %>%
+                                                dplyr::filter(row_number() == 1) %>%
+                                                dplyr::select(-IDENTITY_TIMESTAMP)
 
-                ##Saving RDS
-                saveRDS(output_data, file = rds_fn)
-                typewriteR::tell_me(Sys.time(), rds_fn, "saved...")
-                cat("\n")
+                        add_to_key <-
+                                dplyr::tibble(IDENTITY_ID = identity_id,
+                                              KEY_FIELD = key_field,
+                                              KEY_CONCEPT_NAME = key_concept_name,
+                                              KEY_WORD = new_key_words) %>%
+                                dplyr::left_join(identity) %>%
+                                dplyr::mutate(KEY_TIMESTAMP = mirroR::get_timestamp())
 
-                typewriteR::tell_me("Object", output_dataframe_name, "will now be overwritten.")
-                typewriteR::stop_and_enter()
-                assign(output_dataframe_name, output_data, envir = globalenv())
+                }
+
+
+                ##Adding new record to key
+                current_key <-
+                        readr::read_csv(path_to_key, col_types = cols(.default = "c"))
+
+                new_key <-
+                        dplyr::bind_rows(current_key,
+                                         add_to_key)
+
+                if ((nrow(new_key) - nrow(current_key)) != 1) {
+                        typewriteR::tell_me("Warning: difference between the new key and current key is not 1.")
+                        typewriteR::stop_and_enter()
+                }
+
+                readr::write_csv(new_key,
+                                 path = path_to_key)
+
+                if (!is.null(path_to_local_repo)) {
+                        mirCat::git_add_all(path_to_local_repo = path_to_local_repo)
+                        mirCat::git_commit(path_to_local_repo = path_to_local_repo,
+                                           commit_message = "+: key_word/s to key")
+                        mirCat::git_push_to_msk(path_to_local_repo = path_to_local_repo)
+                }
         }
