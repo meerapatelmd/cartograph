@@ -6,7 +6,7 @@
 \usage{
 redcap_identity_from_csv(path_to_identity, target_cols,
   redcap_forms_to_exclude = NULL, rm_na_concepts = TRUE,
-  keep_all_cols = FALSE, dont_trimws = FALSE, remove_all = "\\t|\\n",
+  keep_all_cols = TRUE, dont_trimws = FALSE, remove_all = "\\t|\\n",
   include_duplicates = FALSE, exclude_concepts = NULL, log = TRUE)
 }
 \arguments{

@@ -18,7 +18,7 @@ redcap_identity_from_csv <-
                  target_cols,
                  redcap_forms_to_exclude = NULL,
                  rm_na_concepts = TRUE,
-                 keep_all_cols = FALSE,
+                 keep_all_cols = TRUE,
                  dont_trimws = FALSE,
                  remove_all = "\t|\n",
                  include_duplicates = FALSE,
@@ -96,6 +96,11 @@ redcap_identity_from_csv <-
                                 IDENTITY_07
                 }
 
+                IDENTITY_NATIVE_FORMAT <- readr::read_csv(path_to_identity, col_types = cols(.default = "c"))
+
+                FINAL_IDENTITY <-
+                        dplyr::inner_join(IDENTITY_NATIVE_FORMAT, IDENTITY_08)
+
 
                 if (log == TRUE) {
                         mirCat::log_this_as(project_log_dir = dirname(path_to_identity),
@@ -105,8 +110,8 @@ redcap_identity_from_csv <-
                                             project_log_load_timestamp = mirroR::get_timestamp()
                                             )
 
-                        return(IDENTITY_08)
+                        return(FINAL_IDENTITY)
                 } else {
-                        return(IDENTITY_08)
+                        return(FINAL_IDENTITY)
                 }
         }
