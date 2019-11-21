@@ -67,8 +67,7 @@ redcap_identity_from_csv <-
 
                 IDENTITY_05 <-
                         reshape2::melt(IDENTITY_04, measure.vars = c("VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL"), variable.name = "KEY_FIELD", value.name = "KEY_CONCEPT_NAME") %>%
-                        dplyr::mutate_all(as.character) %>%
-                        dplyr::mutate(KEY_FIELD = str_replace_all(KEY_FIELD, "^PERMISSIBLE_VALUE_LABEL$", "KMI_PERMISSIBLE_VALUE_LABEL"))
+                        dplyr::mutate_all(as.character)
 
                 if (include_duplicates == TRUE) {
                         IDENTITY_06 <- IDENTITY_05
