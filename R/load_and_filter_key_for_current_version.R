@@ -11,11 +11,26 @@
 #' @export
 
 load_and_filter_key_for_current_version <-
-        function(path_to_key, 
-                 log = TRUE) {
-                
-                KEY_00 <- readr::read_csv(path_to_key, col_types = readr::cols(.default = "c"))
-                
+        function(path_to_key,
+                 log = TRUE,
+                 project_alias) {
+
+                KEY_00 <- readr::read_csv(path_to_key, col_types = readr::cols(.default = "c")) %>%
+                                dplyr::filter(PROJECT_ALIAS == project_alias)
+
+                ##Timestamp QA
+                KEY_00_q <-
+                        KEY_00 %>%
+                        dplyr::mutate(KEY_TIMESTAMP = gsub(paste0("^(20[1,2]{1}[0-9]{1}[-]{1}[0-9]{1,2}[-]{1}[0-9]{1,2})([T]{1})([0-9]{1,2}[:]{1}[0-9]{1,2}[:]{1}[0-9]{1,2})([Z]{1})$"),
+                                                           "\\1 \\3",
+                                                           KEY_TIMESTAMP
+                                                           )
+                                      )
+
+                #Timestamp brake
+                brake_if_timestamp_not_std(KEY_00_q$KEY_TIMESTAMP)
+
+                #Here we go
                 KEY_01 <-
                         KEY_00 %>%
                         dplyr::mutate(KEY_TIMESTAMP = lubridate::ymd_hms(KEY_TIMESTAMP)) %>%
@@ -24,8 +39,9 @@ load_and_filter_key_for_current_version <-
                         dplyr::arrange(desc(KEY_TIMESTAMP)) %>%
                         dplyr::filter(row_number() == 1) %>%
                         dplyr::ungroup() %>%
-                        somersaulteR::call_mr_clean()
-                
+                        somersaulteR::call_mr_clean() %>%
+                        dplyr::select(KEY_TIMESTAMP, IDENTITY_ID, everything())
+
                 if (log == TRUE) {
                         mirCat::log_this_as(project_log_dir = dirname(path_to_key),
                                             project_log_load_comment = "key",
@@ -37,7 +53,7 @@ load_and_filter_key_for_current_version <-
                                             #project_log_gsheet_key = mirCat::gs_id_from_name(gsheet_name)
                         )
                 }
-                
+
                 return(KEY_01)
-                
+
         }

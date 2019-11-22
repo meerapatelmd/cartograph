@@ -4,7 +4,8 @@
 \alias{load_and_filter_key_for_current_version}
 \title{Gets KEY data and cleans up based on parameters}
 \usage{
-load_and_filter_key_for_current_version(path_to_key, log = TRUE)
+load_and_filter_key_for_current_version(path_to_key, log = TRUE,
+  project_alias)
 }
 \arguments{
 \item{path_to_key}{full file path to key csv file}
