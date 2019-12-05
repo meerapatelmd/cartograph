@@ -15,15 +15,4 @@ path_to_input_01 <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/msk-extract-qua
 path_to_input_02 <- "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/msk-extract-quarry/One_Offs/Missing Mappings.xlsx"
 
 
-
-# IDENTITY <- readr::read_csv(path_to_identity, col_types = cols(.default = "c"))
-# IDENTITY_LONG <- cartographR::identity_from_csv(path_to_identity = path_to_identity, target_cols = c("VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL"))
-#
-# IDENTITY_LONG %>%
-#         dplyr::filter_at(vars(KEY_CONCEPT_NAME), any_vars(grepl("Anti-HER2 Therapy - Trastuzumab-Based", ., ignore.case = TRUE) == TRUE))
-#
-#
-# retrieve_key <-
-#         function(path_to_key, log_source_comment = "") {
-#                 key <- mirCat::my_read_csv(path_to_key, log_source_comment = log_source_comment)
-#         }
+list.files("/Users/meerapatel/GitHub/MSK_KMI_Enterprise/msk-extract-quarry/REDCap_Data_Dictionaries")
