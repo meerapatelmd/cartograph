@@ -1,6 +1,6 @@
 #' Returns MRCONSO NETS that match the phrase
 #' @param phrase character vector of length 1.
-#' @param rm_forward_slash forward slashes throws errors with the write_csv and read_csv proceses downstream and are removed from the phrase by default
+#' @param ward_slash forward slashes throws errors with the write_csv and read_csv proceses downstream and are removed from the phrase by default
 #' @param cast_wide_net TRUE if any NET with a grep logical match is to be included
 #' @param list_by_cui selects only CUI and STR variables and splits output by CUI into a list
 #' @import dplyr
@@ -97,8 +97,8 @@ return_mrconso_net <-
                         files_list <- list.files(path_to_umls_net_dir, full.names = TRUE)
                         lookup <- readr::read_csv(lookup_fn, col_types = cols(.default = "c"))
                         phrase_00 <- phrase
-                        if (rm_forward_slash == TRUE) {
-                                phrase_01 <- stringr::str_remove_all(phrase_00, "[/]")
+                        if (sub_forward_slash == TRUE) {
+                                phrase_01 <- stringr::str_replace_all(phrase_00, "[/]{1}", " ")
                         } else {
                                 phrase_01 <- phrase
                         }
