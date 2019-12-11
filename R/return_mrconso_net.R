@@ -94,7 +94,7 @@ return_mrconso_net <-
                                                       )
 
                         lookup_fn <- path_to_lookup
-                        files_list <- list.files(path_to_umls_nets, full.names = TRUE)
+                        files_list <- list.files(path_to_umls_net_dir, full.names = TRUE)
                         lookup <- readr::read_csv(lookup_fn, col_types = cols(.default = "c"))
                         phrase_00 <- phrase
                         if (rm_forward_slash == TRUE) {
