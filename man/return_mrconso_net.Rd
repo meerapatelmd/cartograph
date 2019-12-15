@@ -17,7 +17,7 @@ return_mrconso_net(phrase, path_to_lookup,
 
 \item{list_by_cui}{selects only CUI and STR variables and splits output by CUI into a list}
 
-\item{rm_forward_slash}{forward slashes throws errors with the write_csv and read_csv proceses downstream and are removed from the phrase by default}
+\item{ward_slash}{forward slashes throws errors with the write_csv and read_csv proceses downstream and are removed from the phrase by default}
 }
 \description{
 Returns MRCONSO NETS that match the phrase
