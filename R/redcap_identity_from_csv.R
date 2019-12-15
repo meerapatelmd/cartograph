@@ -6,7 +6,7 @@
 #' @param dont_trimws TRUE if white spaces on both the left and right side are not desired in the output
 #' @param remove_all character string of length 1 representing the string of artifact and other values to be removed from the final output separated by the OR operator
 #' @import mirCat
-#' @import somersaulteR
+#' @import rubix
 #' @importFrom reshape2 melt
 #' @import dplyr
 #' @import readr
@@ -31,7 +31,7 @@ redcap_identity_from_csv <-
                 if (!is.null(redcap_forms_to_exclude)) {
                         IDENTITY_01 <-
                                 IDENTITY_00 %>%
-                                somersaulteR::filter_out_vector(filter_col = FORM_NAME,
+                                rubix::filter_out_vector(filter_col = FORM_NAME,
                                                                 exclusion_vector = redcap_forms_to_exclude)
                 } else {
                         IDENTITY_01 <-
@@ -89,7 +89,7 @@ redcap_identity_from_csv <-
                 if (!is.null(exclude_concepts)) {
                         IDENTITY_08 <-
                                 IDENTITY_07 %>%
-                                somersaulteR::filter_out_vector(filter_col = KEY_CONCEPT_NAME,
+                                rubix::filter_out_vector(filter_col = KEY_CONCEPT_NAME,
                                                                 exclusion_vector = exclude_concepts)
                 } else {
                         IDENTITY_08 <-

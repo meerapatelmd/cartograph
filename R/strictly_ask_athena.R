@@ -3,7 +3,7 @@
 #' @return resultset as a dataframe with all column types as character and trimmed white space
 #' @importFrom mySeagull connect_to_local_postgres
 #' @import DBI
-#' @importFrom somersaulteR call_mr_clean
+#' @importFrom rubix call_mr_clean
 #' @import dplyr
 #' @export
 
@@ -17,5 +17,5 @@ strictly_ask_athena <-
                                              statement = sql_statement)
                 DBI::dbDisconnect(conn_to_athena)
                 return(resultset %>%
-                               somersaulteR::call_mr_clean())
+                               rubix::call_mr_clean())
         }

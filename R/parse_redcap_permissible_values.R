@@ -1,7 +1,8 @@
 #' Parses REDCap Permissible Values
 #' @import dplyr
 #' @import stringr
-#' @importFrom mirCat split_and_trim_pipe
+#' @import centipede
+#' 
 
 parse_redcap_permissible_values <-
         function(dataframe, id_col, variable_col, permissible_value_string_col, new_permissible_col_name = "PERMISSIBLE_VALUE_LITERAL") {
@@ -32,7 +33,7 @@ parse_redcap_permissible_values <-
                                 unlist()
 
                         if (!(is.na(permissible_value_string))) {
-                                pv.literal_of_i <- mirCat::split_and_trim_pipe(permissible_value_string)
+                                pv.literal_of_i <- centipede::strsplit_trim_pipe(permissible_value_string)
                                 pv.literal_of_i <- stringr::str_replace_all(pv.literal_of_i, "(^[0-9]{1,3})( )", "\\1,\\2")
                                 pv.literal_of_i <- stringr::str_replace_all(pv.literal_of_i, "(^[0-9]{1,4}[,]{1})(.*)([,]{1})(.*$)", "\\1\\2\\4")
 

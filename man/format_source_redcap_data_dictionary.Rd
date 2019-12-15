@@ -5,7 +5,10 @@
 \title{Parses source redcap data dictionary to IDENTITY format}
 \usage{
 format_source_redcap_data_dictionary(path_to_redcap_data_dictionary_csv,
-  project_alias, identity_id_starting_digit, identity_id_prefix)
+  project_alias, identity_id_starting_digit, identity_id_prefix,
+  column_order = c("PROJECT_ALIAS", "IDENTITY_ID", "FORM_NAME",
+  "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL",
+  "FIELD_TYPE", "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE"))
 }
 \arguments{
 \item{project_alias}{character string of length 1 for "PROJECT_ALIAS"}

@@ -1,7 +1,7 @@
 #' Query based on search terms that does not write to catalogue
 #' @importFrom mySeagull get_query
 #' @import dplyr
-#' @importFrom somersaulteR call_mr_clean
+#' @import rubix
 #' @export
 
 loosely_ask_misterconso <-
@@ -19,5 +19,5 @@ loosely_ask_misterconso <-
                 sql_statement <- paste0(sql_statement, ";")
                 resultset <- mySeagull::get_query("umls", sql_statement = sql_statement)
                 return(resultset %>%
-                               somersaulteR::call_mr_clean())
+                               rubix::call_mr_clean())
         }

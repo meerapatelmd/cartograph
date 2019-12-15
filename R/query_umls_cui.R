@@ -3,10 +3,10 @@
 #' @param limit LIMIT in the sql statement. If NULL, all records will be returned.
 #' @return resultset from SQL query
 #' @importFrom mySeagull get_query
-#' @importFrom somersaulteR call_mr_clean
+#' @importFrom rubix call_mr_clean
 #' @export
 
-query_cui_in_umls <-
+query_umls_cui <-
         function(umls_cui, limit = NULL) {
                 
                 if (is.null(limit)) {
@@ -19,5 +19,5 @@ query_cui_in_umls <-
 
                 cohort <- mySeagull::get_query("umls", sql_statement)
                 
-                return(cohort %>% somersaulteR::call_mr_clean())
+                return(cohort %>% rubix::call_mr_clean())
         }
