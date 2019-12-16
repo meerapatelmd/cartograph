@@ -4,9 +4,13 @@
 \alias{parse_redcap_permissible_values}
 \title{Parses REDCap Permissible Values}
 \usage{
-parse_redcap_permissible_values(dataframe, id_col, variable_col,
+parse_redcap_permissible_values(
+  dataframe,
+  id_col,
+  variable_col,
   permissible_value_string_col,
-  new_permissible_col_name = "PERMISSIBLE_VALUE_LITERAL")
+  new_permissible_col_name = "PERMISSIBLE_VALUE_LITERAL"
+)
 }
 \description{
 Parses REDCap Permissible Values

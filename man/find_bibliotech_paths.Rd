@@ -4,8 +4,7 @@
 \alias{find_bibliotech_paths}
 \title{Gets all the full file paths in biblio-tech for function calls}
 \usage{
-find_bibliotech_paths(path_to_bibliotech_repo, parts = c("CATALOGUE",
-  "KEY"))
+find_bibliotech_paths(path_to_bibliotech_repo, parts = c("CATALOGUE", "KEY"))
 }
 \arguments{
 \item{parts}{which parts of the biblio-tech that will be included in the object returned}

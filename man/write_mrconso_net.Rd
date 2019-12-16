@@ -4,10 +4,16 @@
 \alias{write_mrconso_net}
 \title{Writes a MRCONSO NET file if one does not exist for the given phrase}
 \usage{
-write_mrconso_net(dataframe, phrase_col, path_to_lookup,
-  path_to_umls_net_dir, sub_forward_slash = TRUE,
-  trim_inner_space = TRUE, sub_underscore = TRUE,
-  push_to_github = TRUE)
+write_mrconso_net(
+  dataframe,
+  phrase_col,
+  path_to_lookup,
+  path_to_umls_net_dir,
+  sub_forward_slash = TRUE,
+  trim_inner_space = TRUE,
+  sub_underscore = TRUE,
+  push_to_github = TRUE
+)
 }
 \description{
 Writes a MRCONSO NET file if one does not exist for the given phrase

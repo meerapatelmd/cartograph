@@ -4,9 +4,13 @@
 \alias{process_new_redcap_data_dictionary}
 \title{Process new redcap data dictionary into the parsed, IDENTITY format and added to the IDENTITY component and biblio-tech repo is commited}
 \usage{
-process_new_redcap_data_dictionary(path_to_redcap_data_dictionary_csv,
-  project_alias, identity_id_starting_digit, identity_id_prefix,
-  commit_message)
+process_new_redcap_data_dictionary(
+  path_to_redcap_data_dictionary_csv,
+  project_alias,
+  identity_id_starting_digit,
+  identity_id_prefix,
+  commit_message
+)
 }
 \arguments{
 \item{project_alias}{character string of length 1 for "PROJECT_ALIAS"}

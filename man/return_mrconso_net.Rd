@@ -4,11 +4,18 @@
 \alias{return_mrconso_net}
 \title{Returns MRCONSO NETS that match the phrase}
 \usage{
-return_mrconso_net(phrase, path_to_lookup,
-  path_to_umls_net_dir = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/TerminologyBiblioTech/CATALOGUE/UMLS/NETS",
-  sub_forward_slash = TRUE, trim_inner_space = TRUE,
-  sub_underscore = TRUE, push_to_github = TRUE, cast_wide_net = TRUE,
-  list_by_cui = TRUE)
+return_mrconso_net(
+  phrase,
+  path_to_lookup,
+ 
+    path_to_umls_net_dir = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/TerminologyBiblioTech/CATALOGUE/UMLS/NETS",
+  sub_forward_slash = TRUE,
+  trim_inner_space = TRUE,
+  sub_underscore = TRUE,
+  push_to_github = TRUE,
+  cast_wide_net = TRUE,
+  list_by_cui = TRUE
+)
 }
 \arguments{
 \item{phrase}{character vector of length 1.}

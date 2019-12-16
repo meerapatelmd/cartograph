@@ -4,12 +4,19 @@
 \alias{write_athena_net}
 \title{Writes Athena CONCEPT table NET}
 \usage{
-write_athena_net(phrases,
-  path_to_athena_lookup = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/LOOKUP.csv",
-  path_to_net_dir = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/NETS",
-  sub_forward_slash = TRUE, trim_inner_space = TRUE,
-  sub_underscore = TRUE, id_start_index = 60000, path_to_repo = NULL,
-  return_lookup = TRUE)
+write_athena_net(
+  phrases,
+ 
+    path_to_athena_lookup = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/LOOKUP.csv",
+ 
+    path_to_net_dir = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/NETS",
+  sub_forward_slash = TRUE,
+  trim_inner_space = TRUE,
+  sub_underscore = TRUE,
+  id_start_index = 60000,
+  path_to_repo = NULL,
+  return_lookup = TRUE
+)
 }
 \arguments{
 \item{phrases}{character vector of length 1 or greater of queries}

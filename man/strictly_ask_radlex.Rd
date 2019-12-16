@@ -4,8 +4,11 @@
 \alias{strictly_ask_radlex}
 \title{Queries RadLex.xls as if it is a database}
 \usage{
-strictly_ask_radlex(phrase,
-  path_to_radlex_xls = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/RadLex_v4/Radlex.xls")
+strictly_ask_radlex(
+  phrase,
+ 
+    path_to_radlex_xls = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/RadLex_v4/Radlex.xls"
+)
 }
 \description{
 Queries RadLex.xls as if it is a database

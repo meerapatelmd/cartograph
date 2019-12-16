@@ -4,8 +4,13 @@
 \alias{parse_redcap_boolean_values}
 \title{Parses 'yesno' field types as permissible values}
 \usage{
-parse_redcap_boolean_values(dataframe, id_col, variable_col,
-  field_type_col, new_permissible_col_name = "PERMISSIBLE_VALUE_LITERAL")
+parse_redcap_boolean_values(
+  dataframe,
+  id_col,
+  variable_col,
+  field_type_col,
+  new_permissible_col_name = "PERMISSIBLE_VALUE_LITERAL"
+)
 }
 \description{
 Parses 'yesno' field types as permissible values

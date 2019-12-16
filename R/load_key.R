@@ -31,7 +31,7 @@ load_key <-
                         dplyr::mutate(KEY_FIELD = stringr::str_replace_all(KEY_FIELD, "^KMI_PERMISSIBLE_VALUE_LABEL$", "PERMISSIBLE_VALUE_LABEL")) %>%
                         dplyr::group_by(IDENTITY_ID, KEY_FIELD, KEY_CONCEPT_NAME) %>%
                         dplyr::arrange(desc(KEY_TIMESTAMP)) %>%
-                        dplyr::filter(row_number() == 1) %>%
+                        dplyr::filter(KEY_TIMESTAMP == max(KEY_TIMESTAMP)) %>%
                         dplyr::ungroup() %>%
                         rubix::call_mr_clean() %>%
                         dplyr::select(KEY_TIMESTAMP, IDENTITY_ID, everything())

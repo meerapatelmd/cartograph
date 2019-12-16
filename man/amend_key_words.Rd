@@ -4,8 +4,14 @@
 \alias{amend_key_words}
 \title{Interactively collect keywords associated with a concept that will be used in the WHERE clause in the SQL statement}
 \usage{
-amend_key_words(path_to_key, identity_id, key_field, key_concept_name, ...,
-  path_to_local_repo = NULL)
+amend_key_words(
+  path_to_key,
+  identity_id,
+  key_field,
+  key_concept_name,
+  ...,
+  path_to_local_repo = NULL
+)
 }
 \arguments{
 \item{concept_col}{column to use to filter for the row to amend in the dataframe captured by "script_step_number, "_", output_dataframe_name, ".RData""}
