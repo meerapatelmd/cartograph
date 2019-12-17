@@ -3,6 +3,7 @@
 #' @param by "mapping ratio" if a list of PRECOORDINATED vs ONE_TO_ONE is desired. "key field" if a variable vs. permissible_value split is desired.
 #' @return list of key_df split into 2 dataframes
 #' @importFrom crayon red
+#' @importFrom typewriteR tell_me
 #' @import dplyr
 #' @export
 
@@ -14,7 +15,7 @@ split_key <-
                 
                 if (by == "mapping ratio") {
                         output[[1]] <-
-                                current_key_df %>%
+                                key_df %>%
                                 dplyr::group_by(IDENTITY_ID, KEY_FIELD, KEY_CONCEPT_NAME) %>%
                                 dplyr::mutate(OBS = length(KEY_CONCEPT_NAME)) %>%
                                 dplyr::filter(OBS > 1) %>%
@@ -22,7 +23,7 @@ split_key <-
                                 dplyr::select(-OBS)
                         
                         output[[2]] <-
-                                current_key_df %>%
+                                key_df %>%
                                 dplyr::group_by(IDENTITY_ID, KEY_FIELD, KEY_CONCEPT_NAME) %>%
                                 dplyr::mutate(OBS = length(KEY_CONCEPT_NAME)) %>%
                                 dplyr::filter(OBS == 1) %>%
@@ -33,11 +34,11 @@ split_key <-
                         return(output)
                 } else if (by == "key field") {
                         output[[1]] <-
-                                current_key_df %>%
+                                key_df %>%
                                 dplyr::filter_at(vars(contains("PERMISSIBLE_VALUE")), all_vars(is.na(.)))
                         
                         output[[2]] <-
-                                current_key_df %>%
+                                key_df %>%
                                 dplyr::filter_at(vars(contains("PERMISSIBLE_VALUE")), all_vars(!is.na(.)))
                         
                         names(output) <- c("VARIABLE", "PERMISSIBLE_VALUE")
