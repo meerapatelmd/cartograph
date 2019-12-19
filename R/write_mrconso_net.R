@@ -7,6 +7,7 @@
 #' @import projektoR
 #' @import mySeagull
 #' @import crayon
+#' @import centipede
 #' @importFrom gmp as.bigz
 #' @export
 
@@ -89,7 +90,8 @@ write_mrconso_net <-
                                         sql_statement <- paste0("SELECT * FROM MRCONSO WHERE LAT = 'ENG' AND ISPREF = 'Y' AND STR = '", phrase_01, "' LIMIT 1;")
                                         coordinate <- mySeagull::get_query("umls", sql_statement)
 
-                                        keyword_id <- generate_next_id_number(lookup$UMLS_SQL_KEYWORD_ID)
+                                        keyword_id <- centipede::calculate_next_integer(lookup$UMLS_SQL_KEYWORD_ID)
+                                        
 
                                         add_to_lookup <-
                                                 data.frame(UMLS_SQL_KEYWORD_TIMESTAMP = mirroR::get_timestamp(),
