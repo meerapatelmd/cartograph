@@ -3,7 +3,6 @@
 #' @param identity_id_starting_digit character string of length 1 for the number the primary key should start at
 #' @param identity_id_prefix character string of length 1 for the prefix each primary key should have
 #' @param commit_message commit message when new changes are pushed the biblio-tech origin master
-#' @importFrom projektoR append_csv
 #' @import mirCat
 #' @export
 
@@ -20,7 +19,7 @@ process_new_redcap_data_dictionary <-
                                                              identity_id_starting_digit = identity_id_starting_digit,
                                                              identity_id_prefix = identity_id_prefix)
 
-                projektoR::append_csv(path_to_identity,
+                mirCat::append_csv(path_to_identity,
                                       dataframe = output)
 
                 mirCat::git_status(path_to_bibliotech_repo)

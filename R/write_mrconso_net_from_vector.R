@@ -4,7 +4,6 @@
 #' @import readr
 #' @import mirroR
 #' @import typewriteR
-#' @import projektoR
 #' @import mySeagull
 #' @import crayon
 #' @importFrom gmp as.bigz
@@ -94,7 +93,7 @@ write_mrconso_net_from_vector <-
                                                 somersaulteR::call_mr_clean()
 
 
-                                        projektoR::append_csv(lookup_fn,
+                                        mirCat::append_csv(lookup_fn,
                                                               dataframe = add_to_lookup
                                         )
 

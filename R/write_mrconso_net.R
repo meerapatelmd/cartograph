@@ -4,7 +4,6 @@
 #' @import readr
 #' @import mirroR
 #' @import typewriteR
-#' @import projektoR
 #' @import mySeagull
 #' @import crayon
 #' @import centipede
@@ -104,7 +103,7 @@ write_mrconso_net <-
                                                 somersaulteR::call_mr_clean()
 
 
-                                        projektoR::append_csv(lookup_fn,
+                                        mirCat::append_csv(lookup_fn,
                                                               dataframe = add_to_lookup
                                         )
 

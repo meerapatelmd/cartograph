@@ -12,7 +12,6 @@
 #' @importFrom mySeagull connect_to_local_postgres
 #' @import DBI
 #' @importFrom mirroR create_path_to_file
-#' @importFrom projektoR append_csv
 #' @export
 #'
 #'
@@ -81,7 +80,7 @@ write_athena_net <-
 
                                 readr::write_csv(output, path = output_fn)
 
-                                projektoR::append_csv(csv_fn = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/LOOKUP.csv",
+                                mirCat::append_csv(csv_fn = "/Users/meerapatel/GitHub/MSK_KMI_Enterprise/biblio-tech/CATALOGUE/Athena_Vocabulary_v5/LOOKUP.csv",
                                                       dataframe = dplyr::tibble(ATHENA_SQL_KEYWORD_TIMESTAMP = mirroR::get_timestamp(),
                                                                          ATHENA_SQL_KEYWORD_ID = athena_sql_keyword_id,
                                                                          ATHENA_SQL_KEYWORD = phrase_01,
