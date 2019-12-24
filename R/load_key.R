@@ -17,9 +17,13 @@ load_key <-
                  project_alias) {
                 
                 key <- list()
-
-                key[[1]] <- readr::read_csv(path_to_key, col_types = readr::cols(.default = "c")) %>%
+                
+                if (project_alias != "all") {
+                        key[[1]] <- readr::read_csv(path_to_key, col_types = readr::cols(.default = "c")) %>%
                                 dplyr::filter(PROJECT_ALIAS == project_alias)
+                } else {
+                        key[[1]] <- readr::read_csv(path_to_key, col_types = readr::cols(.default = "c"))
+                }
 
                 #Timestamp brake
                 mirCat::brake_for_timestamp_format(key[[1]]$KEY_TIMESTAMP)
