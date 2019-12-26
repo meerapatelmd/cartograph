@@ -9,8 +9,10 @@ parse_redcap_source_file(
   project_alias,
   identity_id_starting_digit,
   identity_id_prefix,
-  column_order = c("PROJECT_ALIAS", "IDENTITY_ID", "FORM_NAME", "VARIABLE_FIELD_NAME",
-    "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL", "FIELD_TYPE",
+  redcap_concept_id_prefix,
+  redcap_concept_id_starting_digit,
+  column_order = c("PROJECT_ALIAS", "IDENTITY_ID", "REDCAP_CONCEPT_ID", "FORM_NAME",
+    "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL", "FIELD_TYPE",
     "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
 )
 }

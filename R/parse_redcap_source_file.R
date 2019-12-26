@@ -14,7 +14,9 @@ parse_redcap_source_file <-
                  project_alias,
                  identity_id_starting_digit,
                  identity_id_prefix,
-                 column_order = c("PROJECT_ALIAS", "IDENTITY_ID", "FORM_NAME", "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL", "FIELD_TYPE", "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
+                 redcap_concept_id_prefix,
+                 redcap_concept_id_starting_digit,
+                 column_order = c("PROJECT_ALIAS", "IDENTITY_ID", "REDCAP_CONCEPT_ID", "FORM_NAME", "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL", "FIELD_TYPE", "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
         ) {
 
                 DATA_00 <- mirCat::my_read_csv(path_to_csv = path_to_redcap_source_file,
@@ -61,22 +63,29 @@ parse_redcap_source_file <-
                         DATA_04 %>%
                         dplyr::mutate(PROJECT_ALIAS = project_alias)
 
-                ##Arranging by IDENTITY_ID
+                #Adding REDCAP_CONCEPT_ID
                 DATA_06 <-
-                DATA_05 %>%
+                        DATA_05 %>%
+                        rubix::mutate_primary_key(pkey_column_name = "REDCAP_CONCEPT_ID",
+                                                  starting_number = redcap_concept_id_starting_digit,
+                                                  prefix = redcap_concept_id_prefix)
+
+                ##Arranging by IDENTITY_ID
+                DATA_07 <-
+                DATA_06 %>%
                         dplyr::arrange(IDENTITY_ID)
 
                 ##Rearranging column order
-                 DATA_07 <-
-                        DATA_06 %>%
+                 DATA_08 <-
+                        DATA_07 %>%
                         dplyr::select(column_order, everything())
 
                 ##Adding timestamp for IDENTITY_ID creation
-                DATA_08 <-
-                        DATA_07 %>%
+                DATA_09 <-
+                        DATA_08 %>%
                         rubix::mutate_timestamp_column(new_col_name = "IDENTITY_TIMESTAMP")
 
                 #Final
-                DATA_XX_ <- DATA_08
+                DATA_XX_ <- DATA_09
                 return(DATA_XX_)
         }
