@@ -63,9 +63,10 @@ parse_redcap_source_file <-
                         DATA_04 %>%
                         dplyr::mutate(PROJECT_ALIAS = project_alias)
 
-                #Adding REDCAP_CONCEPT_ID
+                #Adding REDCAP_CONCEPT_ID after deduplicating
                 DATA_06 <-
                         DATA_05 %>%
+                        dplyr::distinct() %>%
                         rubix::mutate_primary_key(pkey_column_name = "REDCAP_CONCEPT_ID",
                                                   starting_number = redcap_concept_id_starting_digit,
                                                   prefix = redcap_concept_id_prefix)
