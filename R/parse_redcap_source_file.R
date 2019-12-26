@@ -9,7 +9,7 @@
 #' @import stringr
 #' @export
 
-format_source_redcap_data_dictionary <-
+parse_redcap_source_file <-
         function(path_to_redcap_source_file,
                  project_alias,
                  identity_id_starting_digit,
