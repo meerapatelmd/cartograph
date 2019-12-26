@@ -5,7 +5,7 @@
 \title{Parses source redcap data dictionary to IDENTITY format}
 \usage{
 format_source_redcap_data_dictionary(
-  path_to_redcap_data_dictionary_csv,
+  path_to_redcap_source_file,
   project_alias,
   identity_id_starting_digit,
   identity_id_prefix,
