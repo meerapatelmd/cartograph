@@ -73,7 +73,7 @@ parse_redcap_source_file <-
                 ##Arranging by IDENTITY_ID
                 DATA_07 <-
                 DATA_06 %>%
-                        dplyr::arrange(IDENTITY_ID)
+                        dplyr::arrange(IDENTITY_ID, REDCAP_CONCEPT_ID)
 
                 ##Rearranging column order
                  DATA_08 <-
