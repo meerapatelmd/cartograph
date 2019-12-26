@@ -85,7 +85,17 @@ parse_redcap_source_file <-
                         DATA_08 %>%
                         rubix::mutate_timestamp_column(new_col_name = "PARSE_TIMESTAMP")
 
+                ##Adding KEY variables
+                DATA_10 <-
+                        DATA_09 %>%
+                        dplyr::mutate(KEY_FIELD = ifelse(is.na(CHOICES_CALCULATIONS_OR_SLIDER_LABELS),
+                                                         "VARIABLE_FIELD_NAME",
+                                                         "PERMISSIBLE_VALUE_LABEL")) %>%
+                        dplyr::mutate(KEY_CONCEPT_NAME = ifelse(is.na(PERMISSIBLE_VALUE_LABEL),
+                                                                VARIABLE_FIELD_NAME,
+                                                                PERMISSIBLE_VALUE_LABEL))
+
                 #Final
-                DATA_XX_ <- DATA_09
+                DATA_XX_ <- DATA_10
                 return(DATA_XX_)
         }
