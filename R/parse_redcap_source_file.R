@@ -89,7 +89,7 @@ parse_redcap_source_file <-
                 ##Adding KEY variables
                 DATA_10 <-
                         DATA_09 %>%
-                        dplyr::mutate(KEY_FIELD = ifelse(is.na(CHOICES_CALCULATIONS_OR_SLIDER_LABELS),
+                        dplyr::mutate(KEY_FIELD = ifelse(is.na(PERMISSIBLE_VALUE_LABEL),
                                                          "VARIABLE_FIELD_NAME",
                                                          "PERMISSIBLE_VALUE_LABEL")) %>%
                         dplyr::mutate(KEY_CONCEPT_NAME = ifelse(is.na(PERMISSIBLE_VALUE_LABEL),
