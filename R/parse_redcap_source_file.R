@@ -83,7 +83,7 @@ parse_redcap_source_file <-
                 ##Adding timestamp for IDENTITY_ID creation
                 DATA_09 <-
                         DATA_08 %>%
-                        rubix::mutate_timestamp_column(new_col_name = "IDENTITY_TIMESTAMP")
+                        rubix::mutate_timestamp_column(new_col_name = "PARSE_TIMESTAMP")
 
                 #Final
                 DATA_XX_ <- DATA_09
