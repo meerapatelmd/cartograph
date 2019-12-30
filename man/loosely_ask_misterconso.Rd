@@ -4,7 +4,12 @@
 \alias{loosely_ask_misterconso}
 \title{Query based on search terms that does not write to catalogue}
 \usage{
-loosely_ask_misterconso(...)
+loosely_ask_misterconso(..., limit = NULL, all_columns = FALSE)
+}
+\arguments{
+\item{limit}{default is NULL and returns full resultset.}
+
+\item{all_columns}{default is FALSE and means only CUI and STR will be returned. If TRUE, returns all the MRCONSO tables}
 }
 \description{
 Query based on search terms that does not write to catalogue
