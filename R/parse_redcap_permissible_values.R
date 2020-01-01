@@ -2,7 +2,7 @@
 #' @import dplyr
 #' @import stringr
 #' @import centipede
-#' 
+#'
 
 parse_redcap_permissible_values <-
         function(dataframe, id_col, variable_col, permissible_value_string_col, new_permissible_col_name = "PERMISSIBLE_VALUE_LITERAL") {
@@ -14,6 +14,11 @@ parse_redcap_permissible_values <-
                 pv.id        <- vector()
                 pv.literal <- vector()
                 pv.names <- vector()
+
+                #Removing all FIELD_TYPE = "calc" because it parses the calculation formula into a PERMISSIBLE_VALUE
+                dataframe <-
+                        dataframe %>%
+                        dplyr::filter(FIELD_TYPE != "calc")
 
                 ##Making sure numbers are present for all options
                 for (i in 1:nrow(dataframe)) {

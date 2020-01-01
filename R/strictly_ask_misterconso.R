@@ -1,6 +1,5 @@
 #' Query based on search terms
 #' @importFrom mySeagull get_query
-#' @importFrom stringr str_pad
 #' @export
 
 strictly_ask_misterconso <-
