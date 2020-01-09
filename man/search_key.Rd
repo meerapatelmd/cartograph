@@ -2,10 +2,15 @@
 % Please edit documentation in R/search_key.R
 \name{search_key}
 \alias{search_key}
-\title{Search key for keyword}
+\title{Search key for a term}
 \usage{
-search_key(path_to_key, keyword)
+search_key(path_to_key, string)
+}
+\arguments{
+\item{path_to_key}{path to key file}
+
+\item{string}{string to search}
 }
 \description{
-Search key for keyword
+Search key for a term
 }
