@@ -23,7 +23,7 @@ add_to_key <-
                         mirCat::append_csv(csv_fn = path_to_key,
                                            dataframe = dataframe %>%
                                                    dplyr::mutate(KEY_TIMESTAMP = mirCat::get_timestamp()) %>%
-                                                   dplyr::mutate(MSK_CONCEPT_ID = stringr::str_replace_all(CUI, "^C", "MSK"))
+                                                   dplyr::mutate(MSK_CONCEPT_ID = stringr::str_replace_all(CUI, "C", "MSK"))
                                            )
                 } else if (key_type == "omop") {
 
