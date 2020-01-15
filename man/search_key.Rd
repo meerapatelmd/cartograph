@@ -2,7 +2,7 @@
 % Please edit documentation in R/search_key.R
 \name{search_key}
 \alias{search_key}
-\title{Search key for a term}
+\title{Search key for a term that is not specific and requires input of the key path}
 \usage{
 search_key(path_to_key, string)
 }
@@ -12,5 +12,5 @@ search_key(path_to_key, string)
 \item{string}{string to search}
 }
 \description{
-Search key for a term
+Search key for a term that is not specific and requires input of the key path
 }

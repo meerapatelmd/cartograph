@@ -1,4 +1,4 @@
-#' Search key for a term that is not specific and requires input of the key path
+#' Search OMOP key for a term
 #' @param path_to_key path to key file
 #' @param string string to search
 #' @importFrom readr read_csv
@@ -6,13 +6,20 @@
 #' @export
 #'
 
-search_key <-
-        function(path_to_key,
-                 string) {
+search_omop_key <-
+        function(path_to_key = "/Users/patelm9/GitHub/MSK/biblio-tech/KEY/REDCap/KEY_TO_OMOP.csv",
+                 string,
+                 type = c("like", "exact")) {
 
                 key_data <-
                         readr::read_csv(path_to_key,
                                         col_types = cols(.default = "c"))
+
+                if (type == "exact") {
+                        string <- paste0("^", string, "$")
+                } else {
+                        string <- string
+                }
 
                 output <-
                         key_data %>%
