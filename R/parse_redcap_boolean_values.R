@@ -51,7 +51,8 @@ parse_redcap_boolean_values <-
                                       !!new_permissible_col_name := pv.literal,
                                       !!variable_col := pv.names)
 
-                return(x)
+                return(x %>%
+                               dplyr::mutate_all(as.character))
         }
 
 
