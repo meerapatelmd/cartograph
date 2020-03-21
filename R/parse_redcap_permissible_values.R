@@ -2,7 +2,7 @@
 #' @import dplyr
 #' @import stringr
 #' @import centipede
-#'
+#' @export
 
 parse_redcap_permissible_values <-
         function(dataframe, id_col, variable_col, permissible_value_string_col, new_permissible_col_name = "PERMISSIBLE_VALUE_LITERAL") {

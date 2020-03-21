@@ -7,21 +7,23 @@
 parse_redcap_source_file(
   path_to_redcap_source_file,
   project_alias,
-  identity_id_starting_digit,
-  identity_id_prefix,
-  redcap_concept_id_prefix,
-  redcap_concept_id_starting_digit,
-  column_order = c("PROJECT_ALIAS", "IDENTITY_ID", "REDCAP_CONCEPT_ID", "FORM_NAME",
+  redcap_group_id_starting_digit = 1,
+  redcap_group_id_prefix = "group_",
+  redcap_concept_id_prefix = "concept_",
+  redcap_concept_id_starting_digit = 1,
+  column_order = c("PROJECT_ALIAS", "REDCAP_GROUP_ID", "REDCAP_CONCEPT_ID", "FORM_NAME",
     "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL", "FIELD_TYPE",
     "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
 )
 }
 \arguments{
+\item{path_to_redcap_source_file}{path to csv export of REDCap data dictionary}
+
 \item{project_alias}{character string of length 1 for "PROJECT_ALIAS"}
 
-\item{identity_id_starting_digit}{character string of length 1 for the number the primary key should start at}
+\item{redcap_group_id_starting_digit}{character string of length 1 for the number the primary key should start at}
 
-\item{identity_id_prefix}{character string of length 1 for the prefix each primary key should have}
+\item{redcap_group_id_prefix}{character string of length 1 for the prefix each primary key should have}
 }
 \value{
 identity format of the source redcap data dictionary, where there are 3 additional columns for the parsed permissible values, an ID column, and a timestamp
