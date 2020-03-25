@@ -10,8 +10,8 @@
 #' @import stringr
 #' @export
 
-parse_redcap_source_file <-
-        function(path_to_redcap_source_file,
+create_redcap_parsed_data <-
+        function(redcap_source_file,
                  project_alias,
                  redcap_group_id_starting_digit = 1,
                  redcap_group_id_prefix = "group_",
