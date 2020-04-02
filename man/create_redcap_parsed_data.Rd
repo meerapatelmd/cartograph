@@ -11,9 +11,9 @@ create_redcap_parsed_data(
   redcap_group_id_prefix = "group_",
   redcap_concept_id_prefix = "concept_",
   redcap_concept_id_starting_digit = 1,
-  column_order = c("PROJECT_ALIAS", "REDCAP_GROUP_ID", "REDCAP_CONCEPT_ID", "FORM_NAME",
-    "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL", "FIELD_TYPE",
-    "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
+  column_order = c("PROJECT_ALIAS", "REDCAP_GROUP_ID", "REDCAP_CONCEPT_ID",
+    "FORM_NAME", "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL",
+    "FIELD_TYPE", "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
 )
 }
 \arguments{

@@ -20,7 +20,7 @@ create_redcap_parsed_data <-
                  column_order = c("PROJECT_ALIAS", "REDCAP_GROUP_ID", "REDCAP_CONCEPT_ID", "FORM_NAME", "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL", "FIELD_TYPE", "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
         ) {
 
-                DATA_00 <- mirCat::my_read_csv(path_to_csv = path_to_redcap_source_file, log = FALSE)
+                DATA_00 <- mirCat::my_read_csv(path_to_csv = redcap_source_file, log = FALSE)
 
                 #Standardizing Column Names
                 DATA_01 <- rubix::cleanup_colnames(DATA_00)
