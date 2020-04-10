@@ -4,26 +4,10 @@
 \alias{create_redcap_parsed_data}
 \title{Parses source redcap data dictionary to IDENTITY format}
 \usage{
-create_redcap_parsed_data(
-  redcap_source_file,
-  project_alias,
-  redcap_group_id_starting_digit = 1,
-  redcap_group_id_prefix = "group_",
-  redcap_concept_id_prefix = "concept_",
-  redcap_concept_id_starting_digit = 1,
-  column_order = c("PROJECT_ALIAS", "REDCAP_GROUP_ID", "REDCAP_CONCEPT_ID",
-    "FORM_NAME", "VARIABLE_FIELD_NAME", "PERMISSIBLE_VALUE_LABEL", "FIELD_LABEL",
-    "FIELD_TYPE", "CHOICES_CALCULATIONS_OR_SLIDER_LABELS", "FIELD_NOTE")
-)
+create_redcap_parsed_data(redcap_source_file)
 }
 \arguments{
-\item{project_alias}{character string of length 1 for "PROJECT_ALIAS"}
-
-\item{redcap_group_id_starting_digit}{character string of length 1 for the number the primary key should start at}
-
-\item{redcap_group_id_prefix}{character string of length 1 for the prefix each primary key should have}
-
-\item{path_to_redcap_source_file}{path to csv export of REDCap data dictionary}
+\item{redcap_source_file}{path to csv export of REDCap data dictionary}
 }
 \value{
 identity format of the source redcap data dictionary, where there are 3 additional columns for the parsed permissible values, an ID column, and a timestamp
